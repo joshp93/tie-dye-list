@@ -1,0 +1,7 @@
+<div class="main">
+    <span>
+        <ul *ngIf="taskLists">
+            <li *ngFor="let taskList of taskLists">{{ taskList.title }}</li>
+        </ul>
+    </span>
+</div>
