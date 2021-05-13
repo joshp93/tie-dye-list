@@ -1,0 +1,12 @@
+<div class="taskListGroup">
+    <ng-container *ngIf="!renaming; else rename">
+        <div class="taskList" (click)="selectTaskList()" tabindex="0">{{ taskList.title }}</div>
+    </ng-container>
+    <ng-template #rename>
+        <input #titleInput type="text" [(ngModel)]="newTitle" (keyup.enter)="renameTaskList()" (keyup.escape)="renaming = false" (blur)="renaming = false" (keydown.Tab)="renameTaskList()">
+    </ng-template>
+
+    <span></span>
+    <img src="assets/new_label_black_24dp.svg" alt="Rename" tabindex="0" (click)="renameMode()">
+    <img src="assets/dangerous_black_24dp.svg" alt="Delete" tabindex="0" (click)="deleteTaskList()">
+</div>

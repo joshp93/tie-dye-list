@@ -1,0 +1,18 @@
+.main {
+    width: 30vw;
+    height: 100vw;
+    background-color: aqua;
+    .taskLists {
+        display: flex;
+        flex-direction: column;
+        padding: 2vh 2vw 2vh 2vw;
+        font-size: x-large;
+    }
+    input {
+        transition: box-shadow 0.2s;
+    }
+    input:hover {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
+    }
+}

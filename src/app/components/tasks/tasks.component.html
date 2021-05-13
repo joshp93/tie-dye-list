@@ -1,0 +1,2 @@
+<tasks-sidebar (taskListSelectedEvent)="selectedTaskListId" (taskListSelected)="selectedTaskListId = $event" (taskListsEvent)="taskLists = $event"></tasks-sidebar>
+<tasks-task-view [taskListId]="selectedTaskListId" [taskLists]="taskLists"></tasks-task-view>
