@@ -27,6 +27,20 @@ export class NxTasksService {
     });
   }
 
+  getTaskList(id: string): Observable<TaskList> {
+    return new Observable<TaskList>((result) => {
+
+      this.http.get<TaskList>(`${this.rootUri}/${id}`).subscribe((response) => {
+        result.next(response);
+      },
+        (error) => {
+          console.error(error);
+          result.error(`There was an error getting the Task List with id ${id}. Please see console for more details.`);
+        });
+
+    });
+  }
+
   listTasks(taskListId: string): Observable<Task[]> {
     return new Observable<Task[]>((result) => {
 
@@ -111,16 +125,16 @@ export class NxTasksService {
     });
   }
 
-  renameTask(taskListId: string, task: Task, previousTaskId: string): Observable<Task> {
+  patchTask(taskListId: string, task: Task, previousTaskId: string): Observable<Task> {
     return new Observable<Task>((result) => {
 
-      const params = new HttpParams()
+      const params = new HttpParams();
       if (task.parent)
         params.set("parentTaskId", task.parent);
       if (previousTaskId)
         params.set("previousTaskId", previousTaskId);
 
-      this.http.patch<Task>(`${this.rootUri}/tasks/${task.id}`,
+      this.http.patch<Task>(`${this.rootUri}/${taskListId}/tasks/${task.id}`,
         <Task>{
           title: task.title,
           notes: task.notes

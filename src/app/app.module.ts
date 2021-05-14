@@ -9,6 +9,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskViewComponent } from './components/tasks/task-view/task-view.component';
 import { TaskListComponent } from './components/tasks/sidebar/task-list/task-list.component';
 import { FormsModule } from '@angular/forms';
+import { TaskComponent } from './components/tasks/task-view/task/task.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     TasksComponent,
     SidebarComponent,
     TaskViewComponent,
-    TaskListComponent
+    TaskListComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,

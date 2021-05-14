@@ -8,42 +8,36 @@ import { NxTasksService } from 'src/app/services/nx-tasks.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  @Output() taskListSelected = new EventEmitter<string>();
-  @Output() taskListsEvent = new EventEmitter<TaskList[]>();
+  @Output() taskListSelectedEvent = new EventEmitter<TaskList>();
   taskListValue: string;
-
   taskLists: TaskList[]
 
   constructor(private nxTasksService: NxTasksService) { }
 
   ngOnInit(): void {
-    this.listTaskLists();
+    this.listTaskLists(true);
   }
 
-  listTaskLists() {
+  listTaskLists(select?: boolean) {
     this.nxTasksService.listTaskLists().subscribe((result) => {
       this.taskLists = result;
-      this.emitTasksList();
+      if (select)
+        this.selectTaskList(this.taskLists[0]);
     },
       (error) => alert(error));
   }
 
-  selectTaskList(id: string) {
-    this.taskListSelected.emit(id);
+  selectTaskList(taskList: TaskList) {
+    this.taskListSelectedEvent.emit(taskList);
   }
 
   addList() {
     this.nxTasksService.addList(this.taskListValue).subscribe((result) => {
       if (result) {
         this.taskLists.push(result);
-        this.emitTasksList();
-        this.taskListValue = ""
+        this.taskListValue = "";
       }
     },
     (error) => alert(error));
-  }
-
-  private emitTasksList() {
-    this.taskListsEvent.emit(this.taskLists);
   }
 }

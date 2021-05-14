@@ -9,19 +9,28 @@ body {
     font-family: 'Quicksand', sans-serif;
     background-color: lemonchiffon;
 }
-
 input {
-    font-family: 'Quicksand', sans-serif;
     font-size: x-large;
+}
+textarea {
+    font-size: large;
+    overflow: hidden;
+}
+input,
+textarea {
+    font-family: 'Quicksand', sans-serif;
     border: none;
     background-color: rgba(245, 245, 245, 0.8);
     transition: background-color 0.2s;
     margin-bottom: 1rem;
     border-radius: 1rem;
     padding: 0 1vw 0 1vw;
+    resize: none;
 }
 input:focus,
-input:hover {
+input:hover,
+textarea:focus,
+textarea:hover {
     outline: none;
     background-color: whitesmoke;
 }

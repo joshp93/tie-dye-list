@@ -9,8 +9,8 @@ import { NxTasksService } from 'src/app/services/nx-tasks.service';
 })
 export class TaskListComponent implements OnInit {
   @Input() taskList: TaskList;
-  @Output() taskListSelected = new EventEmitter<string>();
-  @Output() taskListChangedEvent = new EventEmitter<string>();
+  @Output() taskListSelectedEvent = new EventEmitter<TaskList>();
+  @Output() taskListChangedEvent = new EventEmitter<void>();
   @ViewChild("titleInput", { static: false }) titleInput: ElementRef;
 
   renaming: boolean;
@@ -23,13 +23,13 @@ export class TaskListComponent implements OnInit {
   }
 
   selectTaskList() {
-    this.taskListSelected.emit(this.taskList.id);
+    this.taskListSelectedEvent.emit(this.taskList);
   }
 
   deleteTaskList() {
     this.nxTaskService.deleteList(this.taskList.id).subscribe((result) => {
       if (result)
-        this.taskListChangedEvent.emit(this.taskList.id);
+        this.taskListChangedEvent.emit();
     },
       (error) => alert(error));
   }
@@ -51,7 +51,7 @@ export class TaskListComponent implements OnInit {
       selfLink: this.taskList.selfLink,
       title: this.newTitle,
       updated: this.taskList.updated
-    })).subscribe((result) => this.taskListChangedEvent.emit(this.taskList.id),
+    })).subscribe((result) => this.taskListChangedEvent.emit(),
       (error) => alert(error));
   }
 }

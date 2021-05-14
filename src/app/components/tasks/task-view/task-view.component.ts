@@ -9,8 +9,7 @@ import { NxTasksService } from 'src/app/services/nx-tasks.service';
   styleUrls: ['./task-view.component.scss']
 })
 export class TaskViewComponent implements OnInit, OnChanges {
-  @Input() taskListId: string;
-  @Input() taskLists: TaskList[];
+  @Input() taskList: TaskList;
   tasks: Task[];
 
   constructor(private nxTasksService: NxTasksService) { }
@@ -19,15 +18,12 @@ export class TaskViewComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.loadTasks(changes.taskListId, changes.taskLists);
+    this.loadTasks();
   }
-
-  loadTasks(taskListIdChange: SimpleChange, taskListsChange: SimpleChange) {
-    if (!this.taskListId && this.taskLists) {
-      this.listTasks(this.taskLists[0].id);
-    } else if (this.taskListId && this.taskLists) {
-      this.listTasks(this.taskListId);
-    }
+  
+  loadTasks() {
+    if (this.taskList)
+      this.listTasks(this.taskList.id);
   }
 
   listTasks(taskListId) {
@@ -37,6 +33,10 @@ export class TaskViewComponent implements OnInit, OnChanges {
         this.tasks.forEach((task) => console.log(task.title));
     },
     (error) => alert(error));
+  }
+
+  selectTask(task: Task) {
+    console.log(task);
   }
 
 }

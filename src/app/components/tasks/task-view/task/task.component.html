@@ -1,0 +1,4 @@
+<div class="taskGroup">
+    <input type="text" [(ngModel)]="task.title" (keyup.enter)="changeTask()" (blur)="changeTask()">
+    <textarea [(ngModel)]="task.notes" (blur)="notesUpdate($event)" (focus)="sizeTextArea($event)" (keyup)="sizeTextArea($event)"></textarea>
+</div>

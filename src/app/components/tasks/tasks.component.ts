@@ -7,15 +7,15 @@ import { TaskList } from 'src/app/models/task-list.model';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-  private _selectedTaskListId: string;
+  private _selectedTaskList: TaskList;
   private _taskLists: TaskList[];
   
-  public get selectedTaskListId() : string {
-    return this._selectedTaskListId;
+  public get selectedTaskList() : TaskList {
+    return this._selectedTaskList;
   }
   
-  public set selectedTaskListId(v : string) {
-    this._selectedTaskListId = v;
+  public set selectedTaskList(v : TaskList) {
+    this._selectedTaskList = v;
   }
   
   public get taskLists() : TaskList[] {
@@ -29,10 +29,6 @@ export class TasksComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  setSelectedTaskListId(id: string) {
-    this.selectedTaskListId = id;
   }
 
   setTaskLists(taskLists: TaskList[]) {
