@@ -1,4 +1,15 @@
 .taskGroup {
     display: flex;
     flex-direction: column;
+    background-color: whitesmoke;
+    padding: 0.5vh 0.5vw 0.5vh 0.5vw;
+    margin-bottom: 1vh;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    input,
+    textarea {
+        margin-bottom: 0.5vh;
+        border-bottom: 1px solid black;
+        border-radius: 0px;
+    }
 }

@@ -1,7 +1,10 @@
 .main {
     width: 30vw;
     height: 100vw;
-    background-color: aqua;
+    background-image: url("../../../../assets/abstract-background-paint-colorful.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     .taskLists {
         display: flex;
         flex-direction: column;
