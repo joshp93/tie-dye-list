@@ -110,7 +110,7 @@ export class NxTasksService {
       if (previousTaskId)
         params.set("previousTaskId", previousTaskId);
 
-      this.http.post<Task>(`${this.rootUri}/tasks`,
+      this.http.post<Task>(`${this.rootUri}/${taskListId}/tasks`,
         <Task>{
           title: task.title,
           notes: task.notes
@@ -143,7 +143,31 @@ export class NxTasksService {
         },
           (error) => {
             console.error(error);
-            result.error(`There was an error adding Task ${task.title} to Task List with id ${taskListId}. Please see console for more details.`);
+            result.error(`There was an error updating Task ${task.title} to Task List with id ${taskListId}. Please see console for more details.`);
+          });
+
+    });
+  }
+
+  completeTask(taskListId: string, task: Task, previousTaskId: string): Observable<Task> {
+    return new Observable<Task>((result) => {
+
+      const params = new HttpParams();
+      if (task.parent)
+        params.set("parentTaskId", task.parent);
+      if (previousTaskId)
+        params.set("previousTaskId", previousTaskId);
+
+      this.http.post<Task>(`${this.rootUri}/${taskListId}/tasks/${task.id}/complete`,
+        <Task>{
+          title: task.title,
+          notes: task.notes
+        }).subscribe((response) => {
+          result.next(response);
+        },
+          (error) => {
+            console.error(error);
+            result.error(`There was an error completing Task ${task.title} to Task List with id ${taskListId}. Please see console for more details.`);
           });
 
     });

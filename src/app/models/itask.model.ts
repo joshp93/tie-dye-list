@@ -3,15 +3,15 @@ export interface ITask {
     id: string;
     etag: string;
     title: string;
-    updated: string;
+    updated: Date;
     selfLink: string;
     parent: string;
     position: string;
     notes: string;
     status: string;
-    due: string;
-    completed: string;
-    deleted: string;
-    hidden: string;
+    due: Date;
+    completed: Date;
+    deleted: boolean;
+    hidden: boolean;
     links: object;
 }

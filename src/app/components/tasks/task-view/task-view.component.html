@@ -1,6 +1,6 @@
 <h1 *ngIf="taskList">{{ taskList.title }}</h1>
 <div class="tasks" *ngIf="tasks">
-    <input type="text" (keyup.enter)="addTask()" [(ngModel)]="taskListValue" placeholder=" + New Task" />
+    <input type="text" (keyup.enter)="addTask()" [(ngModel)]="taskTitle" placeholder=" + New Task" />
     <tasks-task *ngFor="let task of tasks" [taskList]="taskList" [task]="task"
         (taskSelectedEvent)="selectTask($event)" (taskChangedEvent)="listTasks(taskList.id)"></tasks-task>
 </div>

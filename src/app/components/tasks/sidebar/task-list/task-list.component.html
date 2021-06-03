@@ -7,6 +7,6 @@
     </ng-template>
 
     <span></span>
-    <img src="assets/new_label_black_24dp.svg" alt="Rename" tabindex="0" (click)="renameMode()">
-    <img src="assets/dangerous_black_24dp.svg" alt="Delete" tabindex="0" (click)="deleteTaskList()">
+    <img src="assets/new_label_black_24dp.svg" alt="Rename" tabindex="0" (click)="renameMode()" (keyup.enter)="renameMode()">
+    <img src="assets/dangerous_black_24dp.svg" alt="Delete" tabindex="0" (click)="deleteTaskList()" (keyup.enter)="deleteTaskList()">
 </div>

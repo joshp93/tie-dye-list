@@ -17,7 +17,8 @@ h1 {
 input {
     transition: box-shadow 0.2s;
 }
-input:hover {
+input:hover,
+input:focus {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     cursor: pointer;
 }

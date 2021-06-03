@@ -1,4 +1,5 @@
 .taskGroup {
+    font-size: medium;
     display: flex;
     flex-direction: column;
     background-color: whitesmoke;
@@ -8,8 +9,38 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     input,
     textarea {
+        font-size: inherit;
         margin-bottom: 0.5vh;
         border-bottom: 1px solid black;
         border-radius: 0px;
+        padding-left: 0.2vw;
+    }
+    input {
+        width: 50vw;
+    }
+    input:focus,
+    textarea:focus {
+        border-bottom-color: #26D1D5;
+    }
+    .taskHeader {
+        display: flex;
+        flex-direction: row;
+        span {
+            margin-left: auto;
+        }
+        img {
+            border-radius: 50%;
+            background-color: rgba(245, 245, 245, 0.8);
+            transition: box-shadow 0.2s, background-color 0.2s;
+            height: 2rem;
+            margin-left: 0.5vw;
+            z-index: 1;
+        }
+        img:hover,
+        img:focus {
+            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            background-color: whitesmoke;
+        }
     }
 }

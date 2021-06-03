@@ -15,6 +15,7 @@ export class TaskComponent implements OnInit {
   @Output() taskChangedEvent = new EventEmitter<void>();
   newTitle: string;
   newNotes: string;
+  taskModified: boolean;
 
   constructor(private nxTaskService: NxTasksService) { }
 
@@ -26,11 +27,26 @@ export class TaskComponent implements OnInit {
     this.changeTask();
   }
 
-  sizeTextArea(event) {
-    event.target.style.height = `${event.target.scrollHeight}px`;
+  sizeTextArea(target: HTMLTextAreaElement) {
+    target.style.height = `${target.scrollHeight}px`;
+  }
+
+  onTitleModified(event: KeyboardEvent) {
+    this.taskModified = true;
+    if (event.key.toLowerCase() === "enter") {
+      this.changeTask();
+    }
+  }
+
+  onNotesModified(event: KeyboardEvent) {
+    this.taskModified = true;
+    this.sizeTextArea((event.target as HTMLTextAreaElement));
   }
 
   changeTask() {
+    if (!this.taskModified) {
+      return;
+    }
     this.nxTaskService.patchTask(this.taskList.id, this.task, "").subscribe(
       () => this.taskChangedEvent.emit(),
       (error) => alert(error));
@@ -38,6 +54,13 @@ export class TaskComponent implements OnInit {
 
   selectTask() {
     this.taskSelectedEvent.emit(this.task);
+  }
+
+  completeTask() {
+    this.taskModified = true;
+    this.nxTaskService.completeTask(this.taskList.id, this.task, "").subscribe(
+      () => this.taskChangedEvent.emit(),
+      (error) => alert(error));
   }
 
   deleteTask() {

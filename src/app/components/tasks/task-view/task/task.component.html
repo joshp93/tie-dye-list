@@ -1,4 +1,10 @@
 <div class="taskGroup">
-    <input type="text" [(ngModel)]="task.title" (keyup.enter)="changeTask()" (blur)="changeTask()">
-    <textarea [(ngModel)]="task.notes" (blur)="notesUpdate($event)" (focus)="sizeTextArea($event)" (keyup)="sizeTextArea($event)"></textarea>
+    <div class="taskHeader">
+        <input type="text" [(ngModel)]="task.title" (keyup)="onTitleModified($event)" (blur)="changeTask()">
+        <span></span>
+        <img src="assets/done_black_24dp.svg" alt="Done" tabindex="0" (click)="completeTask()" (keyup.enter)="completeTask()">
+        <img src="assets/dangerous_black_24dp.svg" alt="Delete" tabindex="0" (click)="deleteTask()" (keyup.enter)="deleteTask()">
+    </div>
+    <textarea [(ngModel)]="task.notes" (blur)="notesUpdate($event)" (focus)="sizeTextArea($event.target)"
+        (keyup)="onNotesModified($event)"></textarea>
 </div>
