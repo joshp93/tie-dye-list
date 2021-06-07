@@ -41,10 +41,12 @@ export class NxTasksService {
     });
   }
 
-  listTasks(taskListId: string): Observable<Task[]> {
+  listTasks(taskListId: string, showCompletedTasks: boolean): Observable<Task[]> {
     return new Observable<Task[]>((result) => {
 
-      this.http.get<Task[]>(`${this.rootUri}/${taskListId}/tasks`).subscribe((response) => {
+      const params = new HttpParams().append("showCompletedTasks", showCompletedTasks.toString());
+
+      this.http.get<Task[]>(`${this.rootUri}/${taskListId}/tasks`, { params: params }).subscribe((response) => {
         result.next(response);
       },
         (error) => {

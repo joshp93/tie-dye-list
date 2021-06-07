@@ -15,6 +15,7 @@ export class TaskViewComponent implements OnInit, OnChanges {
   taskTitle: string;
 
   constructor(private nxTasksService: NxTasksService) { }
+  showCompletedTasks: boolean = false;
 
   ngOnInit(): void {
     
@@ -30,7 +31,7 @@ export class TaskViewComponent implements OnInit, OnChanges {
   }
 
   listTasks(taskListId: string) {
-    this.nxTasksService.listTasks(taskListId).subscribe((result) => {
+    this.nxTasksService.listTasks(taskListId, this.showCompletedTasks).subscribe((result) => {
       this.tasks = result;
     },
       (error) => alert(error));
@@ -48,6 +49,11 @@ export class TaskViewComponent implements OnInit, OnChanges {
         this.taskTitle = "";
       },
       (error) => alert(error));
+  }
+
+  toggleCompletedTasks() {
+    this.showCompletedTasks = !this.showCompletedTasks;
+    this.loadTasks();
   }
 
 }
