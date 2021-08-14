@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  tasksServerBaseUrl: "http://localhost:8080"
 };

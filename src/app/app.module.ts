@@ -10,6 +10,7 @@ import { TaskViewComponent } from './components/tasks/task-view/task-view.compon
 import { TaskListComponent } from './components/tasks/sidebar/task-list/task-list.component';
 import { FormsModule } from '@angular/forms';
 import { TaskComponent } from './components/tasks/task-view/task/task.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TaskComponent } from './components/tasks/task-view/task/task.component'
     SidebarComponent,
     TaskViewComponent,
     TaskListComponent,
-    TaskComponent
+    TaskComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { TaskComponent } from './components/tasks/task-view/task/task.component'
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

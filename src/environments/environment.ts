@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  tasksServerBaseUrl: "http://localhost:8080",
+  KeycloakAdminBaseUrl: "http://localhost:8180",
+  realm: 'Tie-Dye-List',
+  clientId: 'Tie-Dye-List-Client'
 };
 
 /*

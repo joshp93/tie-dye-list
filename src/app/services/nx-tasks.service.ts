@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { TaskList } from '../models/task-list.model';
 import { Task } from '../models/task.model';
 
@@ -9,7 +10,7 @@ import { Task } from '../models/task.model';
 })
 export class NxTasksService {
 
-  private rootUri: string = "http://localhost:8080/lists";
+  private rootUri: string = environment.tasksServerBaseUrl + "/lists";
 
   constructor(private http: HttpClient) { }
 

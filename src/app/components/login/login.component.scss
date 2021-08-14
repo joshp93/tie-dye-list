@@ -1,0 +1,14 @@
+div {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../../assets/abstract-background-paint-colorful.jpg");
+    background-size: cover;
+    
+    form {
+        width: 80vw;
+        margin-left: 10vw;
+        margin-right: 10vw;
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,8 @@
+<div>
+    <form method="post">
+        <h3>Your first task is to login...</h3>
+        <input type="text" #usernameInput>
+        <input type="password" #passwordInput>
+        <button type="submit" (click)="login(usernameInput.value, passwordInput.value)">Login</button>
+    </form>
+</div>
