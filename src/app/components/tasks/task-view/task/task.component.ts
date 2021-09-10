@@ -32,6 +32,9 @@ export class TaskComponent implements OnInit {
   }
 
   onTitleModified(event: KeyboardEvent) {
+    if (event.code.toLowerCase() === "tab" || event.shiftKey || event.ctrlKey || event.altKey) {
+      return;
+    }
     this.taskModified = true;
     if (event.key.toLowerCase() === "enter") {
       this.changeTask();
@@ -39,6 +42,9 @@ export class TaskComponent implements OnInit {
   }
 
   onNotesModified(event: KeyboardEvent) {
+    if (event.code.toLowerCase() === "tab" || event.shiftKey || event.ctrlKey || event.altKey) {
+      return;
+    }
     this.taskModified = true;
     this.sizeTextArea((event.target as HTMLTextAreaElement));
   }

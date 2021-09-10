@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  tasksServerBaseUrl: "http://localhost:8080",
+  tasksServerBaseUrl: "http://localhost:8443/tasks",
   KeycloakAdminBaseUrl: "http://localhost:8180",
   realm: 'Tie-Dye-List',
   clientId: 'Tie-Dye-List-Client'
