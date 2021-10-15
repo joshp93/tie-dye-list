@@ -4,8 +4,27 @@ button {
 }
 #main {
     position: fixed;
-    width: 100vw;
+    left: 5vw;
+    width: 90vw;
     z-index: 10;
     display: none;
-    background-color: whitesmoke;
+    background-color: rgba(127, 255, 212, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    .taskLists {
+        display: flex;
+        flex-direction: column;
+        padding: 2vh 2vw 2vh 2vw;
+        font-size: x-large;
+    }
+    input {
+        transition: box-shadow 0.2s;
+    }
+    input:hover {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
+    }
+    button {
+        margin-top: auto;
+    }
 }
