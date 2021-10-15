@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TaskList } from 'src/app/models/task-list.model';
 import { NxTasksService } from 'src/app/services/nx-tasks.service';
+import { AuthService } from "../../../services/auth.service";
 
 @Component({
   selector: 'tasks-sidebar',
@@ -10,9 +11,9 @@ import { NxTasksService } from 'src/app/services/nx-tasks.service';
 export class SidebarComponent implements OnInit {
   @Output() taskListSelectedEvent = new EventEmitter<TaskList>();
   taskListValue: string;
-  taskLists: TaskList[]
+  taskLists: TaskList[];
 
-  constructor(private nxTasksService: NxTasksService) { }
+  constructor(private nxTasksService: NxTasksService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.listTaskLists(true);
@@ -36,6 +37,7 @@ export class SidebarComponent implements OnInit {
       if (result) {
         this.taskLists.push(result);
         this.taskListValue = "";
+        this.selectTaskList(result);
       }
     },
     (error) => alert(error));

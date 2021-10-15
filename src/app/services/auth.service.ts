@@ -32,8 +32,8 @@ export class AuthService {
         response => {
           sessionStorage.setItem("access_token", response.access_token);
           sessionStorage.setItem("refresh_token", response.refresh_token);
-          sessionStorage.setItem("token_expiry", moment(new Date()).add(response.expires_in, 'm').toISOString());
-          sessionStorage.setItem("refresh_token_expiry", moment(new Date()).add(response.refresh_expires_in, 'm').toISOString());
+          sessionStorage.setItem("token_expiry", moment(new Date()).add(response.expires_in, 's').toISOString());
+          sessionStorage.setItem("refresh_token_expiry", moment(new Date()).add(response.refresh_expires_in, 's').toISOString());
           resolve(true);
         },
         error => {
@@ -59,8 +59,8 @@ export class AuthService {
         response => {
           sessionStorage.setItem("access_token", response.access_token);
           sessionStorage.setItem("refresh_token", response.refresh_token);
-          sessionStorage.setItem("token_expiry", moment(new Date()).add(response.expires_in, 'm').toISOString());
-          sessionStorage.setItem("refresh_token_expiry", moment(new Date()).add(response.refresh_expires_in, 'm').toISOString());
+          sessionStorage.setItem("token_expiry", moment(new Date()).add(response.expires_in, 's').toISOString());
+          sessionStorage.setItem("refresh_token_expiry", moment(new Date()).add(response.refresh_expires_in, 's').toISOString());
           resolve();
         },
         error => {

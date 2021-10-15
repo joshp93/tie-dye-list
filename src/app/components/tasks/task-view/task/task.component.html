@@ -1,10 +1,14 @@
 <div class="taskGroup">
     <div class="taskHeader">
-        <input type="text" [(ngModel)]="task.title" (keyup)="onTitleModified($event)" (blur)="changeTask()">
+        <input type="text" [(ngModel)]="task.title" (keyup)="onInputModified($event)" (blur)="changeTask()">
         <span></span>
-        <img src="assets/done_black_24dp.svg" alt="Done" tabindex="0" (click)="completeTask()" (keyup.enter)="completeTask()">
-        <img src="assets/dangerous_black_24dp.svg" alt="Delete" tabindex="0" (click)="deleteTask()" (keyup.enter)="deleteTask()">
+        <img src="assets/done_black_24dp.svg" alt="Done" tabindex="0" (click)="completeTask()"
+            (keyup.enter)="completeTask()">
+        <img src="assets/dangerous_black_24dp.svg" alt="Delete" tabindex="0" (click)="deleteTask()"
+            (keyup.enter)="deleteTask()">
     </div>
     <textarea [(ngModel)]="task.notes" (blur)="notesUpdate($event)" (focus)="sizeTextArea($event.target)"
         (keyup)="onNotesModified($event)"></textarea>
+    <input type="date" [min]="minDateInput" (blur)="onDueModified()" [(ngModel)]="dueDate">
+    <input type="time" [min]="minTimeInput" (blur)="onDueModified()" [(ngModel)]="dueTime">
 </div>

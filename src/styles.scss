@@ -9,6 +9,8 @@ body {
     font-family: 'Quicksand', sans-serif;
     background-color: lemonchiffon;
     height: 100%;
+    background-image: url("assets/abstract-background-paint-colorful.jpg");
+    background-size: cover;
 }
 input {
     font-size: x-large;
@@ -38,15 +40,16 @@ textarea:hover {
 button {
     border: none;
     background: none;
-    font-size: large;
+    font-size: x-large;
     border-radius: 1rem;
     margin-bottom: 1vh;
-    background-color: rgba(127, 255, 212, 0.8);
     cursor: pointer;
+    background-image: url("assets/abstract-background-paint-colorful.jpg");
+    background-size: cover;
+    filter: invert(1);
     transition: box-shadow, background-color 0.2s;
 }
 button:hover,
 button:focus {
-    background-color: rgb(127, 255, 212);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgb(153, 153, 153) 0px 5px 15px;
 }

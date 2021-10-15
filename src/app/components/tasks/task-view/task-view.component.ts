@@ -3,6 +3,7 @@ import { TaskList } from 'src/app/models/task-list.model';
 import { Task } from "../../../models/task.model";
 import { NxTasksService } from 'src/app/services/nx-tasks.service';
 import { BehaviorSubject } from 'rxjs';
+import { NaturalLanguageService } from 'src/app/services/natural-language.service';
 
 @Component({
   selector: 'tasks-task-view',
@@ -13,12 +14,12 @@ export class TaskViewComponent implements OnInit, OnChanges {
   @Input() taskList: TaskList;
   tasks: Task[];
   taskTitle: string;
+  showCompletedTasks: boolean;
 
-  constructor(private nxTasksService: NxTasksService) { }
-  showCompletedTasks: boolean = false;
-
+  constructor(private nxTasksService: NxTasksService, private nlService: NaturalLanguageService) {}
+  
   ngOnInit(): void {
-    
+    this.loadShowCompletedTasksFromStorage();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -41,9 +42,10 @@ export class TaskViewComponent implements OnInit, OnChanges {
     if (!this.taskTitle) {
       return;
     }
-    this.nxTasksService.addTask(this.taskList.id, <Task>{
-      title: this.taskTitle,
-    }, "").subscribe(
+
+    const task = this.nlService.parseTitle(this.taskTitle);
+
+    this.nxTasksService.addTask(this.taskList.id, task, "").subscribe(
       () => {
         this.listTasks(this.taskList.id);
         this.taskTitle = "";
@@ -53,7 +55,18 @@ export class TaskViewComponent implements OnInit, OnChanges {
 
   toggleCompletedTasks() {
     this.showCompletedTasks = !this.showCompletedTasks;
+    sessionStorage.setItem('showCompletedTasks', this.showCompletedTasks.toString());
     this.loadTasks();
+  }
+
+  private loadShowCompletedTasksFromStorage() {
+    const showCompleted = sessionStorage.getItem("showCompletedTasks");
+    if (showCompleted) {
+      this.showCompletedTasks = showCompleted === 'true';
+    } else {
+      this.showCompletedTasks = false;
+      sessionStorage.setItem('showCompletedTasks', this.showCompletedTasks.toString());
+    }
   }
 
 }

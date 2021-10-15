@@ -115,10 +115,7 @@ export class NxTasksService {
           params.set("previousTaskId", previousTaskId);
 
         this.http.post<Task>(`${this.rootUri}/${taskListId}/tasks`,
-          {
-            title: task.title,
-            notes: task.notes
-          } as Task, { params: params }).subscribe((response) => {
+          task, { params: params }).subscribe((response) => {
             result.next(response);
           },
             (error) => {
@@ -139,10 +136,7 @@ export class NxTasksService {
           params.set("previousTaskId", previousTaskId);
 
         this.http.patch<Task>(`${this.rootUri}/${taskListId}/tasks/${task.id}`,
-          {
-            title: task.title,
-            notes: task.notes
-          } as Task, { params: params }).subscribe((response) => {
+          task, { params: params }).subscribe((response) => {
             result.next(response);
           },
             (error) => {
@@ -161,12 +155,9 @@ export class NxTasksService {
           params.set("parentTaskId", task.parent);
         if (previousTaskId)
           params.set("previousTaskId", previousTaskId);
-
+        
         this.http.post<Task>(`${this.rootUri}/${taskListId}/tasks/${task.id}/complete`,
-          {
-            title: task.title,
-            notes: task.notes
-          } as Task, { params: params }).subscribe((response) => {
+          task, { params: params }).subscribe((response) => {
             result.next(response);
           },
             (error) => {

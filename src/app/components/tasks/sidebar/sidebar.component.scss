@@ -1,10 +1,9 @@
 .main {
     width: 30vw;
-    height: 100%;
-    background-image: url("../../../../assets/abstract-background-paint-colorful.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    height: 100vh;
+    border-right: 1px solid rgba(127, 255, 212, 0.8);
+    display: flex;
+    flex-direction: column;
     .taskLists {
         display: flex;
         flex-direction: column;
@@ -17,5 +16,8 @@
     input:hover {
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         cursor: pointer;
+    }
+    button {
+        margin-top: auto;
     }
 }

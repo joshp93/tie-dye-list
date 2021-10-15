@@ -16,10 +16,15 @@ export class TaskComponent implements OnInit {
   newTitle: string;
   newNotes: string;
   taskModified: boolean;
+  minDateInput: string;
+  dueDate: string;
+  minTimeInput: string;
+  dueTime: string;
 
   constructor(private nxTaskService: NxTasksService) { }
 
   ngOnInit(): void {
+    this.getDueDateInputValue();
   }
 
   notesUpdate(event) {
@@ -31,7 +36,7 @@ export class TaskComponent implements OnInit {
     target.style.height = `${target.scrollHeight}px`;
   }
 
-  onTitleModified(event: KeyboardEvent) {
+  onInputModified(event: KeyboardEvent) {
     if (event.code.toLowerCase() === "tab" || event.shiftKey || event.ctrlKey || event.altKey) {
       return;
     }
@@ -39,6 +44,14 @@ export class TaskComponent implements OnInit {
     if (event.key.toLowerCase() === "enter") {
       this.changeTask();
     }
+  }
+
+  onDueModified() {
+    if (this.dueDate == this.task.due.split('T')[0] && this.dueTime == this.task.due.split('T')[1]) {
+      return;
+    }
+    this.taskModified = true;
+    this.changeTask();
   }
 
   onNotesModified(event: KeyboardEvent) {
@@ -53,6 +66,7 @@ export class TaskComponent implements OnInit {
     if (!this.taskModified) {
       return;
     }
+    this.task.due = this.dueDate + "T" + this.dueTime;
     this.nxTaskService.patchTask(this.taskList.id, this.task, "").subscribe(
       () => this.taskChangedEvent.emit(),
       (error) => alert(error));
@@ -75,5 +89,18 @@ export class TaskComponent implements OnInit {
         this.taskChangedEvent.emit();
     },
       (error) => alert(error));
+  }
+
+  getDueDateInputValue() {
+    this.dueDate = "";
+    this.dueTime = "";
+    let dateTimeSplit = new Date().toISOString().split('T');
+    this.minDateInput = dateTimeSplit[0];
+    this.minTimeInput = dateTimeSplit[1];
+    if (this.task.due) {
+      dateTimeSplit = this.task.due.split('T');
+      this.dueDate = dateTimeSplit[0];
+      this.dueTime = dateTimeSplit[1];
+    }
   }
 }
