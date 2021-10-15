@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { TaskComponent } from './components/tasks/task-view/task/task.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { MenuComponent } from './components/tasks/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     TaskViewComponent,
     TaskListComponent,
     TaskComponent,
-    LoginComponent
+    LoginComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,9 @@
+<button (click)="toggleMenu()">Menu</button>
+<nav id="main">
+    <div class="taskLists" *ngIf="taskLists">
+        <input type="text" (keyup.enter)="addList()" [(ngModel)]="taskListValue" placeholder=" + New List"/>
+        <tasks-task-list *ngFor="let taskList of taskLists" [taskList]="taskList"
+            (taskListSelectedEvent)="selectTaskList($event)" (taskListChangedEvent)="listTaskLists(true)"></tasks-task-list>
+    </div>
+    <button type="submit" (click)="authService.logout()" tabindex="1000000">Logout </button>
+</nav>

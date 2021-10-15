@@ -1,4 +1,5 @@
 <div>
-    <tasks-sidebar (taskListSelectedEvent)="selectedTaskList = $event"></tasks-sidebar>
+    <tasks-sidebar *ngIf="showSidebar" (taskListSelectedEvent)="selectedTaskList = $event"></tasks-sidebar>
+    <tasks-menu *ngIf="showMenu" (taskListSelectedEvent)="selectedTaskList = $event"></tasks-menu>
     <tasks-task-view [taskList]="selectedTaskList"></tasks-task-view>
 </div>
