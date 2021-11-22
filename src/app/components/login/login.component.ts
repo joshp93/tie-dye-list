@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  failedLogin: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -15,6 +16,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(username: string, password: string) {
-    this.authService.login(username, password).then(() => this.router.navigate(["/tasks"]));
+    this.authService.login(username, password)
+      .then(() => this.router.navigate(["/tasks"]))
+      .catch(() => this.failedLogin = true);
   }
 }

@@ -4,5 +4,6 @@
         <input type="text" #usernameInput>
         <input type="password" #passwordInput>
         <button type="submit" (click)="login(usernameInput.value, passwordInput.value)">Login</button>
+        <p class="failedLogin" *ngIf="failedLogin">❌ There was an error logging you in, please try again ❌</p>
     </form>
 </div>

@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 })
 export class NxTasksService {
 
-  private rootUri: string = environment.tasksServerBaseUrl + "/lists";
+  private rootUri: string = environment.tasksBaseUrl + "/lists";
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -155,7 +155,9 @@ export class NxTasksService {
           params.set("parentTaskId", task.parent);
         if (previousTaskId)
           params.set("previousTaskId", previousTaskId);
-        
+
+        task.hidden = !task.hidden;
+
         this.http.post<Task>(`${this.rootUri}/${taskListId}/tasks/${task.id}/complete`,
           task, { params: params }).subscribe((response) => {
             result.next(response);

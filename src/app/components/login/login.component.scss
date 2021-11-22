@@ -9,5 +9,9 @@ div {
         margin-right: 10vw;
         display: flex;
         flex-direction: column;
+        .failedLogin {
+            font-size: large;
+            text-align: right;
+        }
     }
 }

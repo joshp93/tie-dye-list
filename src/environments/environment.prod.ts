@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  tasksServerBaseUrl: "http://localhost:8080"
+  tasksBaseUrl: "http://localhost:8443/tasks",
+  authBaseUrl: "http://localhost:8443/auth"
 };

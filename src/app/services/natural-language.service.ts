@@ -9,6 +9,7 @@ export class NaturalLanguageService {
 
   private static weekdaysRegEx = "mon|tue|wed|thu|fri|sat|sun";
   private weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  private weekDaysShort = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
   constructor() { }
 
   parseTitle(title: string) {
@@ -20,10 +21,17 @@ export class NaturalLanguageService {
       title = title.replace('tomorrow', '').trim();
       due = new Date();
       due.setDate(due.getDate() + 1);
-    } else if (new RegExp(NaturalLanguageService.weekdaysRegEx).test(title.toLowerCase())) {
-      const result = new RegExp(NaturalLanguageService.weekdaysRegEx).exec(title.toLowerCase())[0];
-      due = this.getNextDayOfWeek(new Date(), this.getDayNumber(result));
-      title = this.removeDayTextFromTitle(title, result).trim();
+    }
+
+    let day = this.findDayInArray(title, this.weekDays);
+    let dayShort = this.findDayInArray(title, this.weekDaysShort);
+
+    if (day) {
+      due = this.getNextDayOfWeek(new Date(), this.getDayNumber(day));
+      title = this.removeDayTextFromTitle(title, day).trim();
+    } else if (dayShort) {
+      due = this.getNextDayOfWeek(new Date(), this.getDayNumber(dayShort));
+      title = this.removeDayTextFromTitle(title, dayShort).trim();
     }
 
     if (due) {
@@ -38,6 +46,25 @@ export class NaturalLanguageService {
     }
   }
 
+  private findDayInArray(title: string, array: Array<string>): string {
+    const words = title.split(' ');
+    let found = false;
+    let returnWord = "";
+    array.forEach(day => {
+      if (found) {
+        return;
+      }
+      words.forEach(word => {
+        if (word === day) {
+          found = true;
+          returnWord = word;
+          return;
+        }
+      });
+    });
+    return returnWord;
+  }
+
   private getDayNumber(dayString: string): number {
     let dayNumber = -1;
     this.weekDays.forEach(day => {
@@ -49,6 +76,9 @@ export class NaturalLanguageService {
   }
 
   private removeDayTextFromTitle(title: string, dayString: string): string {
+    if (title.toLowerCase() === dayString.toLowerCase()) {
+      return title;
+    }
     const words = title.split(' ')
     words.forEach(word => {
       if (word.toLowerCase().includes(dayString.toLowerCase())) {
