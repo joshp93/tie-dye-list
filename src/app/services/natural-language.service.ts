@@ -7,7 +7,6 @@ import { Task } from '../models/task.model';
 })
 export class NaturalLanguageService {
 
-  private static weekdaysRegEx = "mon|tue|wed|thu|fri|sat|sun";
   private weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   private weekDaysShort = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
   constructor() { }
