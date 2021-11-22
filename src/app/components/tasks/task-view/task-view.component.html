@@ -1,4 +1,7 @@
-<h1 *ngIf="taskList">{{ taskList.title }}</h1>
+<div class="header">
+    <h1 *ngIf="taskList">{{ taskList.title }}</h1>
+    <button type="submit" *ngIf="tasks" (click)="exportService.exportToCSV(tasks, taskList.title)">Export</button>
+</div>
 <div class="tasks" *ngIf="tasks">
     <input type="text" (keyup.enter)="addTask()" [(ngModel)]="taskTitle" placeholder=" + New Task" />
     <button (click)="toggleCompletedTasks()">{{ showCompletedTasks ? "Hide" : "Show" }} Completed Tasks</button>

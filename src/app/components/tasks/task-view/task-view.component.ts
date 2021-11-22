@@ -4,6 +4,7 @@ import { Task } from "../../../models/task.model";
 import { NxTasksService } from 'src/app/services/nx-tasks.service';
 import { BehaviorSubject } from 'rxjs';
 import { NaturalLanguageService } from 'src/app/services/natural-language.service';
+import { ExportService } from 'src/app/services/export.service';
 
 @Component({
   selector: 'tasks-task-view',
@@ -16,7 +17,7 @@ export class TaskViewComponent implements OnInit, OnChanges {
   taskTitle: string;
   showCompletedTasks: boolean;
 
-  constructor(private nxTasksService: NxTasksService, private nlService: NaturalLanguageService) {}
+  constructor(private nxTasksService: NxTasksService, private nlService: NaturalLanguageService, private exportService: ExportService) {}
   
   ngOnInit(): void {
     this.loadShowCompletedTasksFromStorage();
